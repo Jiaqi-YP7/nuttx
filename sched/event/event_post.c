@@ -52,7 +52,7 @@
  *              NXEVENT_POST_SET: overwrite existing events.
  *              NXEVENT_POST_ALL: wake all waiting tasks.
  * Returned Value:
- *   OK on success; -EINVAL if the event pointer is NULL.
+ *   Zero (OK) is returned on success.
  *
  ****************************************************************************/
 
@@ -70,10 +70,7 @@ int nxevent_post(FAR nxevent_t *event, nxevent_mask_t events,
   bool postall;
   bool need_switch;
 
-  if (event == NULL)
-    {
-      return -EINVAL;
-    }
+  DEBUGASSERT(event != NULL);
 
   flags = enter_critical_section();
 
