@@ -59,11 +59,10 @@
  * individual registers in the xcp.regs array:
  */
 
-/* If the MCU supports a floating point unit, then it will be necessary
- * to save the state of the FPU status register and data registers on
- * each context switch.  These registers are not saved during interrupt
- * level processing, however. So, as a consequence, floating point
- * operations may NOT be performed in interrupt handlers.
+/* If the MCU supports a floating point unit, the state of the FPU status
+ * register and data registers are saved and restored on each interrupt/
+ * exception entry and exit (when CONFIG_ARCH_FPU is enabled). Therefore,
+ * floating point operations ARE permitted in interrupt handlers.
  *
  * The FPU provides an extension register file containing 32 single-
  * precision registers. These can be viewed as:
